@@ -1,0 +1,123 @@
+export const cats = [
+  {
+    id: '1',
+    name: 'Brigadeiro',
+    age: '8 meses',
+    breed: 'SRD',
+    city: 'Sao Paulo, SP',
+    color: 'Caramelo',
+    personality: ['Brincalhao', 'Carinhoso', 'Ativo'],
+    image:
+      'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=900&h=700&fit=crop&auto=format',
+    ownerName: 'Ana Lima',
+    ownerId: 'ana123',
+    description:
+      'Brigadeiro e um gatinho cheio de energia, muito apegado as pessoas e sempre pronto para brincar. Convive bem com outros animais e gosta de colo depois de gastar a energia.',
+    vaccinated: true,
+    castrated: false,
+    gender: 'Macho',
+  },
+  {
+    id: '2',
+    name: 'Mel',
+    age: '2 anos',
+    breed: 'Persa',
+    city: 'Rio de Janeiro, RJ',
+    color: 'Branco',
+    personality: ['Tranquila', 'Elegante', 'Independente'],
+    image:
+      'https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=900&h=700&fit=crop&auto=format',
+    ownerName: 'Carlos Souza',
+    ownerId: 'carlos456',
+    description:
+      'Mel prefere ambientes calmos, gosta de rotina e e perfeita para quem busca uma companhia serena. Adora escovacao, almofadas macias e tardes silenciosas.',
+    vaccinated: true,
+    castrated: true,
+    gender: 'Femea',
+  },
+  {
+    id: '3',
+    name: 'Carvao',
+    age: '1 ano',
+    breed: 'SRD',
+    city: 'Curitiba, PR',
+    color: 'Preto',
+    personality: ['Curioso', 'Esperto', 'Energetico'],
+    image:
+      'https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?w=900&h=700&fit=crop&auto=format',
+    ownerName: 'Beatriz Rocha',
+    ownerId: 'beatriz789',
+    description:
+      'Carvao explora a casa inteira, adora altura e sempre encontra uma forma de chamar atencao. E carinhoso, mas tem bastante personalidade.',
+    vaccinated: true,
+    castrated: true,
+    gender: 'Macho',
+  },
+  {
+    id: '4',
+    name: 'Perola',
+    age: '3 anos',
+    breed: 'Siames',
+    city: 'Belo Horizonte, MG',
+    color: 'Creme e marrom',
+    personality: ['Vocal', 'Leal', 'Inteligente'],
+    image:
+      'https://images.unsplash.com/photo-1561948955-570b270e7c36?w=900&h=700&fit=crop&auto=format',
+    ownerName: 'Pedro Alves',
+    ownerId: 'pedro321',
+    description:
+      'Perola e uma siamesa sociavel que gosta de acompanhar a rotina da casa. Costuma responder com miados e se apega bastante aos tutores.',
+    vaccinated: true,
+    castrated: true,
+    gender: 'Femea',
+  },
+  {
+    id: '5',
+    name: 'Laranja',
+    age: '6 meses',
+    breed: 'Maine Coon',
+    city: 'Porto Alegre, RS',
+    color: 'Laranja rajado',
+    personality: ['Docil', 'Sociavel', 'Gigante'],
+    image:
+      'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=900&h=700&fit=crop&auto=format',
+    ownerName: 'Mariana Costa',
+    ownerId: 'mariana654',
+    description:
+      'Laranja ainda e filhote, mas ja mostra o jeitao carinhoso e tranquilo da raca. Precisa de uma familia paciente e com espaco para crescimento.',
+    vaccinated: true,
+    castrated: false,
+    gender: 'Macho',
+  },
+  {
+    id: '6',
+    name: 'Neve',
+    age: '4 anos',
+    breed: 'Angora',
+    city: 'Brasilia, DF',
+    color: 'Branco',
+    personality: ['Serena', 'Carinhosa', 'Elegante'],
+    image:
+      'https://images.unsplash.com/photo-1583795128727-6ec3642408f8?w=900&h=700&fit=crop&auto=format',
+    ownerName: 'Lucas Ferreira',
+    ownerId: 'lucas987',
+    description:
+      'Neve gosta de lugares confortaveis, escovacao frequente e uma rotina tranquila. E uma otima companhia para quem gosta de uma presenca delicada.',
+    vaccinated: true,
+    castrated: true,
+    gender: 'Femea',
+  },
+]
+
+export const personalityOptions = [
+  'Brincalhao',
+  'Carinhoso',
+  'Tranquilo',
+  'Independente',
+  'Curioso',
+  'Energetico',
+  'Vocal',
+  'Timido',
+  'Sociavel',
+  'Docil',
+]
