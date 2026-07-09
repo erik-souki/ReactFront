@@ -1,45 +1,19 @@
-﻿import { ArrowRight, Heart, MapPin, MessageCircle, Search, Shield } from 'lucide-react'
+﻿import { ArrowRight, Heart, MapPin, Search, Shield } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import EmptyState from '../../components/EmptyState'
+import { appRoutes, homeSearchFields, homeSteps } from '../../config/site'
 import heroImage from '../../assets/hero.png'
 import { cats } from '../../data/cats'
+import { matchesSearch } from '../../utils/form'
 import './style.css'
 
 export default function Home() {
   const [search, setSearch] = useState('')
 
   const filteredCats = useMemo(() => {
-    const query = search.trim().toLowerCase()
-
-    if (!query) {
-      return cats
-    }
-
-    return cats.filter(
-      (cat) =>
-        cat.name.toLowerCase().includes(query) ||
-        cat.breed.toLowerCase().includes(query) ||
-        cat.city.toLowerCase().includes(query),
-    )
+    return cats.filter((cat) => matchesSearch(cat, homeSearchFields, search))
   }, [search])
-
-  const steps = [
-    {
-      icon: Search,
-      title: 'Encontre',
-      description: 'Navegue por perfis de gatos disponiveis perto de voce com filtros simples.',
-    },
-    {
-      icon: MessageCircle,
-      title: 'Converse',
-      description: 'Fale com o tutor responsavel e entenda a rotina, cuidados e personalidade.',
-    },
-    {
-      icon: Heart,
-      title: 'Adote',
-      description: 'Finalize a adocao com seguranca e ofereca um novo lar cheio de carinho.',
-    },
-  ]
 
   return (
     <section className="home-shell">
@@ -56,7 +30,7 @@ export default function Home() {
               Ver gatos disponiveis
               <ArrowRight className="button-icon" />
             </a>
-            <Link to="/cadastrar-gato" className="button button-secondary">
+            <Link to={`/${appRoutes.registerCat}`} className="button button-secondary">
               Colocar para adocao
             </Link>
           </div>
@@ -92,7 +66,7 @@ export default function Home() {
           <h2>Como funciona</h2>
         </div>
         <div className="steps-grid">
-          {steps.map(({ icon: Icon, title, description }) => (
+          {homeSteps.map(({ icon: Icon, title, description }) => (
             <article key={title} className="step-card">
               <div className="step-icon">
                 <Icon />
@@ -156,10 +130,10 @@ export default function Home() {
             ))}
           </div>
         ) : (
-          <div className="empty-state">
-            <h1>Nenhum gato encontrado</h1>
-            <p>Tente buscar por outro nome, cidade ou raca.</p>
-          </div>
+          <EmptyState
+            title="Nenhum gato encontrado"
+            description="Tente buscar por outro nome, cidade ou raca."
+          />
         )}
       </section>
 
@@ -171,7 +145,7 @@ export default function Home() {
           A ponte entre TypeScript e JavaScript aqui e so de sintaxe. Os estilos,
           tokens visuais, imagens e componentes podem ser reaproveitados sem problema.
         </p>
-        <Link to="/cadastro" className="button button-light">
+        <Link to={`/${appRoutes.register}`} className="button button-light">
           Criar conta
           <ArrowRight className="button-icon" />
         </Link>

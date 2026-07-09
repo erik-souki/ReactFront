@@ -1,11 +1,7 @@
-import { Cat, LogIn, Menu, PlusCircle, X } from 'lucide-react'
+import { Cat, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
-
-const navItems = [
-  { to: '/', label: 'Inicio', end: true },
-  { to: '/cadastrar-gato', label: 'Colocar para adocao' },
-]
+import { desktopActionItems, footerLinks, mobileActionItems, navItems } from '../config/site'
 
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -37,14 +33,12 @@ export default function Layout() {
           </nav>
 
           <div className="site-actions">
-            <Link to="/login" className="site-actions__ghost">
-              <LogIn size={15} />
-              Entrar
-            </Link>
-            <Link to="/cadastro" className="site-actions__primary">
-              <PlusCircle size={15} />
-              Cadastrar
-            </Link>
+            {desktopActionItems.map(({ to, label, icon: Icon, variant }) => (
+              <Link key={to} to={to} className={`site-actions__${variant}`}>
+                <Icon size={15} />
+                {label}
+              </Link>
+            ))}
           </div>
 
           <button
@@ -72,20 +66,18 @@ export default function Layout() {
                 {label}
               </NavLink>
             ))}
-            <Link
-              to="/login"
-              className="site-mobile-menu__link"
-              onClick={() => setMenuOpen(false)}
-            >
-              Entrar
-            </Link>
-            <Link
-              to="/cadastro"
-              className="site-mobile-menu__link site-mobile-menu__link--primary"
-              onClick={() => setMenuOpen(false)}
-            >
-              Cadastrar
-            </Link>
+            {mobileActionItems.map(({ to, label, primary }) => (
+              <Link
+                key={to}
+                to={to}
+                className={`site-mobile-menu__link${
+                  primary ? ' site-mobile-menu__link--primary' : ''
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
           </div>
         ) : null}
       </header>
@@ -102,9 +94,11 @@ export default function Layout() {
           </div>
           <p>Conectando gatos a lares cheios de amor.</p>
           <div className="site-footer__links">
-            <Link to="/">Adotar</Link>
-            <Link to="/cadastrar-gato">Cadastrar gato</Link>
-            <Link to="/login">Login</Link>
+            {footerLinks.map(({ to, label }) => (
+              <Link key={to} to={to}>
+                {label}
+              </Link>
+            ))}
           </div>
         </div>
       </footer>

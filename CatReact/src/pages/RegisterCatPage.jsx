@@ -1,7 +1,9 @@
 import { ArrowLeft, Upload } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { appRoutes } from '../config/site'
 import { personalityOptions } from '../data/cats'
+import { createFieldSetter, toggleArrayValue } from '../utils/form'
 
 const initialForm = {
   name: '',
@@ -21,21 +23,10 @@ export default function RegisterCatPage() {
   const [imageName, setImageName] = useState(null)
   const [form, setForm] = useState(initialForm)
   const [personality, setPersonality] = useState([])
-
-  function setField(field) {
-    return (event) => {
-      const value =
-        event.target.type === 'checkbox' ? event.target.checked : event.target.value
-      setForm((current) => ({ ...current, [field]: value }))
-    }
-  }
+  const setField = createFieldSetter(setForm)
 
   function togglePersonality(tag) {
-    setPersonality((current) =>
-      current.includes(tag)
-        ? current.filter((item) => item !== tag)
-        : [...current, tag],
-    )
+    setPersonality((current) => toggleArrayValue(current, tag))
   }
 
   function handleSubmit(event) {
@@ -50,7 +41,7 @@ export default function RegisterCatPage() {
 
   return (
     <section className="page-section page-section--form">
-      <Link to="/" className="back-link">
+      <Link to={appRoutes.home} className="back-link">
         <ArrowLeft size={15} />
         Voltar
       </Link>

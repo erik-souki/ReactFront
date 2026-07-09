@@ -1,22 +1,14 @@
-import {
+﻿import {
   ArrowLeft,
-  Calendar,
   CheckCircle2,
   Heart,
   MapPin,
   MessageCircle,
-  Palette,
-  Tag,
 } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
+import EmptyState from '../components/EmptyState'
+import { appRoutes, detailCards } from '../config/site'
 import { cats } from '../data/cats'
-
-const detailCards = [
-  { key: 'age', label: 'Idade', icon: Calendar },
-  { key: 'breed', label: 'Raca', icon: Tag },
-  { key: 'color', label: 'Cor', icon: Palette },
-  { key: 'gender', label: 'Sexo', icon: Heart },
-]
 
 export default function CatDetailPage() {
   const { id } = useParams()
@@ -25,21 +17,22 @@ export default function CatDetailPage() {
   if (!cat) {
     return (
       <section className="page-section page-section--compact">
-        <div className="empty-state">
-          <h1>Gato nao encontrado</h1>
-          <p>O perfil que voce tentou abrir nao existe ou foi removido.</p>
-          <Link to="/" className="button button-primary">
+        <EmptyState
+          title="Gato nao encontrado"
+          description="O perfil que voce tentou abrir nao existe ou foi removido."
+        >
+          <Link to={appRoutes.home} className="button button-primary">
             <ArrowLeft className="button-icon" />
             Voltar para a lista
           </Link>
-        </div>
+        </EmptyState>
       </section>
     )
   }
 
   return (
     <section className="page-section page-section--compact">
-      <Link to="/" className="back-link">
+      <Link to={appRoutes.home} className="back-link">
         <ArrowLeft size={15} />
         Voltar para a lista
       </Link>
