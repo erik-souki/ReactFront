@@ -1,4 +1,4 @@
-﻿import { ArrowRight, Heart, MapPin, Search, Shield } from 'lucide-react'
+import { ArrowRight, Shield } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EmptyState from '../../components/EmptyState'
@@ -6,6 +6,8 @@ import { appRoutes, homeSearchFields, homeSteps } from '../../config/site'
 import heroImage from '../../assets/hero.png'
 import { cats } from '../../data/cats'
 import { matchesSearch } from '../../utils/form'
+import CatCard from './components/CatCard'
+import SearchField from './components/SearchField'
 import './style.css'
 
 export default function Home() {
@@ -14,6 +16,12 @@ export default function Home() {
   const filteredCats = useMemo(() => {
     return cats.filter((cat) => matchesSearch(cat, homeSearchFields, search))
   }, [search])
+
+  const hasFilteredCats = filteredCats.length > 0
+
+  function handleSearchChange(event) {
+    setSearch(event.target.value)
+  }
 
   return (
     <section className="home-shell">
@@ -84,49 +92,13 @@ export default function Home() {
             <span className="section-kicker">Perfis em destaque</span>
             <h2>Gatos disponiveis</h2>
           </div>
-          <label className="search-field">
-            <Search className="search-icon" />
-            <input
-              type="text"
-              placeholder="Buscar por nome, raca ou cidade"
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-            />
-          </label>
+          <SearchField value={search} onChange={handleSearchChange} />
         </div>
 
-        {filteredCats.length ? (
+        {hasFilteredCats ? (
           <div className="cats-grid">
             {filteredCats.map((cat) => (
-              <Link key={cat.id} to={`/gatos/${cat.id}`} className="cat-card">
-                <div className="cat-image-wrap">
-                  <img src={cat.image} alt={`Foto de ${cat.name}`} className="cat-image" />
-                  <button className="favorite-badge" type="button" aria-label={`Favoritar ${cat.name}`}>
-                    <Heart />
-                  </button>
-                </div>
-                <div className="cat-card-body">
-                  <div className="cat-card-header">
-                    <div>
-                      <h3>{cat.name}</h3>
-                      <p>
-                        {cat.breed} • {cat.age}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="cat-location">
-                    <MapPin />
-                    <span>{cat.city}</span>
-                  </div>
-                  <div className="tag-list">
-                    {cat.personality.map((tag) => (
-                      <span key={tag} className="tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
+              <CatCard key={cat.id} cat={cat} />
             ))}
           </div>
         ) : (
