@@ -355,6 +355,20 @@ img {
   font-weight: 600;
 }
 
+.field-hint,
+.field-error {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.field-hint {
+  color: var(--muted-foreground);
+}
+
+.field-error {
+  color: #a23a26;
+}
+
 .field input,
 .field select,
 .field textarea,
@@ -434,6 +448,14 @@ img {
   border: 0;
   background: transparent;
   color: var(--muted-foreground);
+}
+
+.password-field button:focus-visible,
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 3px solid rgba(192, 80, 31, 0.22);
+  outline-offset: 2px;
 }
 
 .auth-shell {
