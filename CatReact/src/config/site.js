@@ -18,8 +18,8 @@ export const appRoutes = {
 }
 
 export const navItems = [
-  { to: appRoutes.home, label: 'Inicio', end: true },
-  { to: `/${appRoutes.registerCat}`, label: 'Colocar para adocao' },
+  { to: appRoutes.home, label: 'Início', end: true },
+  { to: `/${appRoutes.registerCat}`, label: 'Colocar para adoção' },
 ]
 
 export const desktopActionItems = [
@@ -47,23 +47,23 @@ export const homeSteps = [
   {
     icon: Search,
     title: 'Encontre',
-    description: 'Navegue por perfis de gatos disponiveis perto de voce com filtros simples.',
+    description: 'Navegue por perfis de gatos disponíveis perto de você com filtros simples.',
   },
   {
     icon: MessageCircle,
     title: 'Converse',
-    description: 'Fale com o tutor responsavel e entenda a rotina, cuidados e personalidade.',
+    description: 'Fale com o tutor responsável e entenda a rotina, cuidados e personalidade.',
   },
   {
     icon: Heart,
     title: 'Adote',
-    description: 'Finalize a adocao com seguranca e ofereca um novo lar cheio de carinho.',
+    description: 'Finalize a adoção com segurança e ofereça um novo lar cheio de carinho.',
   },
 ]
 
 export const detailCards = [
   { key: 'age', label: 'Idade', icon: Calendar },
-  { key: 'breed', label: 'Raca', icon: Tag },
+  { key: 'breed', label: 'Raça', icon: Tag },
   { key: 'color', label: 'Cor', icon: Palette },
   { key: 'gender', label: 'Sexo', icon: Heart },
 ]

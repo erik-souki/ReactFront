@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 
 export default function CatCard({ cat }) {
   return (
-    <Link to={`/gatos/${cat.id}`} className="cat-card">
+    <Link to={`/gatos/${cat.id}`} className="cat-card" aria-label={`Ver perfil de ${cat.name}`}>
       <div className="cat-image-wrap">
         <img src={cat.image} alt={`Foto de ${cat.name}`} className="cat-image" />
-        <button className="favorite-badge" type="button" aria-label={`Favoritar ${cat.name}`}>
+        <span className="favorite-badge" aria-hidden="true">
           <Heart />
-        </button>
+        </span>
       </div>
 
       <div className="cat-card-body">
@@ -22,7 +22,7 @@ export default function CatCard({ cat }) {
         </div>
 
         <div className="cat-location">
-          <MapPin />
+          <MapPin aria-hidden="true" />
           <span>{cat.city}</span>
         </div>
 
@@ -33,6 +33,8 @@ export default function CatCard({ cat }) {
             </span>
           ))}
         </div>
+
+        <span className="cat-card-link">Ver detalhes</span>
       </div>
     </Link>
   )

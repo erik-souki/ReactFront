@@ -1,4 +1,4 @@
-import { ArrowRight, Shield } from 'lucide-react'
+import { ArrowRight, SearchX, Shield } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EmptyState from '../../components/EmptyState'
@@ -17,29 +17,33 @@ export default function Home() {
     return cats.filter((cat) => matchesSearch(cat, homeSearchFields, search))
   }, [search])
 
-  const hasFilteredCats = filteredCats.length > 0
+  const featuredCat = filteredCats[0] ?? cats[0]
 
   function handleSearchChange(event) {
     setSearch(event.target.value)
+  }
+
+  function clearSearch() {
+    setSearch('')
   }
 
   return (
     <section className="home-shell">
       <section className="hero-section">
         <div className="hero-copy">
-          <span className="eyebrow">Adocao responsavel</span>
+          <span className="eyebrow">Adoção responsável</span>
           <h1>Todo gato merece um lar com amor</h1>
           <p>
-            A mesma linguagem visual do projeto de referencia, agora trazida para
-            JavaScript com uma base leve, organizada e pronta para evoluir.
+            Descubra perfis revisados, entenda a rotina de cada gato e encontre um
+            novo companheiro com mais clareza e acolhimento.
           </p>
           <div className="hero-actions">
             <a href="#gatos" className="button button-primary">
-              Ver gatos disponiveis
+              Ver gatos disponíveis
               <ArrowRight className="button-icon" />
             </a>
             <Link to={`/${appRoutes.registerCat}`} className="button button-secondary">
-              Colocar para adocao
+              Colocar para adoção
             </Link>
           </div>
           <div className="hero-stats">
@@ -56,13 +60,13 @@ export default function Home() {
 
         <div className="hero-visual">
           <div className="hero-frame">
-            <img src={heroImage} alt="Gato em destaque para adocao" />
+            <img src={heroImage} alt="Gato em destaque para adoção" />
           </div>
           <div className="floating-card">
-            <Shield className="floating-icon" />
+            <Shield className="floating-icon" aria-hidden="true" />
             <div>
-              <span>Rede confiavel</span>
-              <strong>adocao com acolhimento</strong>
+              <span>Rede confiável</span>
+              <strong>adoção com acolhimento</strong>
             </div>
           </div>
         </div>
@@ -77,7 +81,7 @@ export default function Home() {
           {homeSteps.map(({ icon: Icon, title, description }) => (
             <article key={title} className="step-card">
               <div className="step-icon">
-                <Icon />
+                <Icon aria-hidden="true" />
               </div>
               <h3>{title}</h3>
               <p>{description}</p>
@@ -90,12 +94,29 @@ export default function Home() {
         <div className="section-heading row">
           <div>
             <span className="section-kicker">Perfis em destaque</span>
-            <h2>Gatos disponiveis</h2>
+            <h2>Gatos disponíveis</h2>
           </div>
-          <SearchField value={search} onChange={handleSearchChange} />
+          <SearchField
+            value={search}
+            onChange={handleSearchChange}
+            onClear={clearSearch}
+            resultsCount={filteredCats.length}
+          />
         </div>
 
-        {hasFilteredCats ? (
+        <article className="featured-banner" aria-label="Perfil em evidência">
+          <div>
+            <span className="section-kicker">Em evidência</span>
+            <h3>{featuredCat.name}</h3>
+            <p>{featuredCat.description}</p>
+          </div>
+          <Link to={`/gatos/${featuredCat.id}`} className="button button-secondary">
+            Conhecer {featuredCat.name}
+            <ArrowRight className="button-icon" />
+          </Link>
+        </article>
+
+        {filteredCats.length > 0 ? (
           <div className="cats-grid">
             {filteredCats.map((cat) => (
               <CatCard key={cat.id} cat={cat} />
@@ -104,18 +125,23 @@ export default function Home() {
         ) : (
           <EmptyState
             title="Nenhum gato encontrado"
-            description="Tente buscar por outro nome, cidade ou raca."
-          />
+            description="Tente outro nome, raça ou cidade. Você também pode limpar a busca para ver todos os perfis."
+          >
+            <button type="button" className="button button-secondary" onClick={clearSearch}>
+              <SearchX className="button-icon" />
+              Limpar busca
+            </button>
+          </EmptyState>
         )}
       </section>
 
       <section className="cta-section">
-        <Shield className="cta-icon" />
+        <Shield className="cta-icon" aria-hidden="true" />
         <span className="section-kicker section-kicker-light">Pronto para publicar</span>
-        <h2>Seu projeto atual ja consegue receber a mesma identidade visual</h2>
+        <h2>Ajude outro gato a encontrar um lar seguro</h2>
         <p>
-          A ponte entre TypeScript e JavaScript aqui e so de sintaxe. Os estilos,
-          tokens visuais, imagens e componentes podem ser reaproveitados sem problema.
+          Cadastre novos perfis com fotos, contexto e personalidade para acelerar o
+          encontro entre tutores responsáveis e famílias adotantes.
         </p>
         <Link to={`/${appRoutes.register}`} className="button button-light">
           Criar conta
