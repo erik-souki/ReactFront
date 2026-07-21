@@ -336,6 +336,32 @@ img {
   gap: 1rem;
 }
 
+.form-section {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: rgba(255, 251, 246, 0.62);
+}
+
+.form-section__header {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.form-section__header h2 {
+  margin: 0;
+  color: var(--foreground-strong);
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+}
+
+.form-section__header p {
+  margin: 0;
+  color: var(--muted-foreground);
+}
+
 .form-grid--2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -367,6 +393,19 @@ img {
 
 .field-error {
   color: #a23a26;
+}
+
+.field-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.field-counter {
+  color: var(--muted-foreground);
+  font-size: 0.82rem;
+  white-space: nowrap;
 }
 
 .field input,
@@ -435,6 +474,31 @@ img {
   background: var(--input-background);
   color: var(--muted-foreground);
   cursor: pointer;
+}
+
+.upload-card strong,
+.upload-card span {
+  text-align: center;
+}
+
+.upload-card strong {
+  color: var(--foreground-strong);
+  font-size: 1rem;
+}
+
+.upload-card__icon {
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(192, 80, 31, 0.12);
+  color: var(--primary);
+}
+
+.upload-card--filled {
+  border-style: solid;
+  background: rgba(255, 251, 246, 0.92);
 }
 
 .password-field {
@@ -648,5 +712,10 @@ img {
   .form-card,
   .auth-card {
     padding: 1.4rem;
+  }
+
+  .field-inline {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
