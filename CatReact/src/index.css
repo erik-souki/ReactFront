@@ -575,6 +575,13 @@ img {
   gap: 1.25rem;
 }
 
+.detail-hero-card,
+.detail-note {
+  border: 1px solid var(--border);
+  background: rgba(255, 251, 246, 0.88);
+  box-shadow: 0 24px 60px rgba(44, 26, 14, 0.08);
+}
+
 .detail-photo {
   overflow: hidden;
   border-radius: 32px;
@@ -594,6 +601,11 @@ img {
   padding: 1.6rem;
 }
 
+.detail-panel--highlight {
+  background:
+    linear-gradient(135deg, rgba(255, 251, 246, 0.98), rgba(237, 224, 212, 0.92));
+}
+
 .detail-panel h2 {
   margin: 0 0 0.8rem;
 }
@@ -601,6 +613,13 @@ img {
 .detail-subtitle {
   margin: 0.35rem 0 0;
   color: var(--muted-foreground);
+}
+
+.detail-hero-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.6rem;
+  border-radius: 32px;
 }
 
 .detail-location {
@@ -634,6 +653,29 @@ img {
   color: var(--foreground-strong);
 }
 
+.detail-note {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem 1.1rem;
+  border-radius: 24px;
+}
+
+.detail-note__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--foreground-strong);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.detail-note p,
+.detail-owner p {
+  margin: 0;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+
 .status-pill {
   padding: 0.55rem 0.8rem;
   border-radius: 999px;
@@ -654,6 +696,7 @@ img {
 .detail-owner {
   flex-direction: column;
   align-items: flex-start;
+  gap: 0.2rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border);
 }
